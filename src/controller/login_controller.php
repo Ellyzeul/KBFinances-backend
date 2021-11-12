@@ -18,7 +18,8 @@ class LoginController
         else $response = [
             "status" => 200,
             "message" => "Login successful",
-            "name" => $loginResponse["name"]
+            "name" => $loginResponse["name"],
+            "balance" => $loginResponse["balance"]
         ];
 
         LoginView::render($response);

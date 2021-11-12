@@ -9,7 +9,8 @@ class Login
         $selectQuery =
            "SELECT
                 nome,
-                senha
+                senha,
+                saldo
             FROM
                 Usuarios
             WHERE
@@ -19,7 +20,7 @@ class Login
 
         $stmt = $db->prepare($selectQuery);
         $stmt->bind_param("s", $email);
-        $stmt->bind_result($name, $hashPwd);
+        $stmt->bind_result($name, $hashPwd, $balance);
         $stmt->execute();
         $stmt->fetch();
 
@@ -30,7 +31,8 @@ class Login
 
         if(password_verify($pwd, $hashPwd)) return [
             "code" => 0,
-            "name" => $name
+            "name" => $name,
+            "balance" => $balance
         ];
 
         return [
