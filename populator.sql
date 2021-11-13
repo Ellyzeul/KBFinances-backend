@@ -33,3 +33,20 @@ INSERT INTO Usuarios (
     "$2y$10$T3.uYr4RgtPnfWtAgsJ3eOAd7DDBuch0SAHx3kyb0tB98BpUL27Ve", -- 98765432
     100000.00
 );
+
+INSERT INTO CategoriaDeDespesas (
+	id,
+    categoria
+) VALUES
+(0, "Sobrevivência"),
+(1, "Cultura"),
+(2, "Extra/Imprevistos"),
+(3, "Opcionais");
+
+INSERT INTO CategoriaDeReceitas (
+	id,
+    categoria
+) VALUES
+(0, "Salário"),
+(1, "Presente"),
+(2, "Investimentos");

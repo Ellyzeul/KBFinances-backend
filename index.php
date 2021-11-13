@@ -16,7 +16,8 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
 <body>
     <p>Rotas disponíveis</p>
     <ul>
-        <li>Login - <code>/route/login.php</code></li>
+        <li>Login - POST - <code>/route/login.php</code></li>
+        <li>Criar despesa - POST - <code>/route/expense.php?operation=c</code></li>
     </ul>
 </body>
 </html>
