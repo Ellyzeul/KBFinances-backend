@@ -17,7 +17,7 @@ class Database
                 $_ENV["DB_PORT"]
             );
         }
-        catch(Exception $err) {
+        catch(\Exception $err) {
             echo "Database Error: $err";
         }
 

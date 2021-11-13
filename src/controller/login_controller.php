@@ -1,7 +1,7 @@
 <?php namespace KBFinances\Controllers;
 
 use KBFinances\Services\Login;
-use KBFinances\Views\LoginView;
+use KBFinances\Views\View;
 
 
 class LoginController
@@ -22,6 +22,6 @@ class LoginController
             "balance" => $loginResponse["balance"]
         ];
 
-        LoginView::render($response);
+        View::render($response);
     }
 }

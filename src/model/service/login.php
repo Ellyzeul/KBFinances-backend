@@ -4,6 +4,15 @@ use KBFinances\Services\Database;
 
 class Login
 {
+    /**
+     * Returns a associative array with a code.
+     * 
+     * code = 0 -> Authentication successful
+     * 
+     * code = 1 -> Email not found
+     * 
+     * code = 2 -> incorrect password
+     */
     public static function auth(string $email, string $pwd)
     {
         $selectQuery =

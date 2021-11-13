@@ -1,7 +1,7 @@
 <?php namespace KBFinances\Views;
 
 
-class LoginView
+class View
 {
     public static function render($response)
     {
