@@ -37,7 +37,7 @@ class Expense
 
         return [
             "status" => 200,
-            "message" => "Test..."
+            "message" => "Expense created"
         ];
     }
 }
