@@ -25,7 +25,6 @@ class Entry
             $entry_date
         );
         $stmt->execute();
-        var_dump($db);
 
         if($db->errno == 1644) {
             self::insertFinanceMonth($entry_date, $email);

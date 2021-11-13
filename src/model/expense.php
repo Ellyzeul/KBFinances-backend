@@ -33,7 +33,8 @@ class Expense
             $payment_date,
             $due_date
         );
-        $stmt->execute();
+        var_dump($stmt->execute());
+        var_dump($db);
 
         return [
             "status" => 200,
