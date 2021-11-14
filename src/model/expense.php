@@ -15,26 +15,37 @@ class Expense
         ?string $due_date
     )
     {
-        Entry::create($description, $value, date("Y-m-d"), $email);
+        $entryResponse = Entry::create($description, $value, date("Y-m-d"), $email);
+
+        if($entryResponse["code"] != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Entry"
+        ];
 
         $insertQuery =
            "INSERT INTO Despesas (
+                id,
                 categoria,
                 data_pagamento,
                 data_vencimento
-            ) VALUES (?,?,?)";
+            ) VALUES (?,?,?,?)";
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($insertQuery);
         $stmt->bind_param(
-            "iss",
+            "iiss",
+            $entryResponse["entry_id"],
             $category,
             $payment_date,
             $due_date
         );
-        var_dump($stmt->execute());
-        var_dump($db);
+        $stmt->execute();
+
+        if($db->errno != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Expense"
+        ];
 
         return [
             "status" => 200,

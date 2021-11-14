@@ -30,6 +30,12 @@ class Entry
             self::insertFinanceMonth($entry_date, $email);
             Entry::create($description, $value, $entry_date, $email);
         }
+        if($db->errno != 0) return ["code" => 1];
+
+        return [
+            "code" => 0,
+            "entry_id" => $db->insert_id
+        ];
     }
 
     private static function insertFinanceMonth(string $entry_date, string $email)
