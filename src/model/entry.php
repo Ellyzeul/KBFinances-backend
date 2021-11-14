@@ -50,13 +50,14 @@ class Entry
         $db = Database::getDB();
         $month = date("m",strtotime($entry_date));
         $year = date("Y",strtotime($entry_date));
+        $user_id = User::getUserID($email);
 
         $stmt = $db->prepare($insertMonthQuery);
         $stmt->bind_param(
-            "sds",
+            "iii",
             $month,
             $year,
-            User::getUserID($email)
+            $user_id
         );
         $stmt->execute();
     }
