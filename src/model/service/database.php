@@ -15,11 +15,11 @@ class Database
 
         try {
             self::$db = new \mysqli(
-                self::isLocal() ? $_ENV["DB_LOCAL_SERVER_NAME"] : $_ENV["DB_SERVER_NAME"],
-                self::isLocal() ? $_ENV["DB_LOCAL_USERNAME"] : $_ENV["DB_USERNAME"],
-                self::isLocal() ? $_ENV["DB_LOCAL_PASSWORD"] : $_ENV["DB_PASSWORD"],
-                self::isLocal() ? $_ENV["DB_LOCAL_NAME"] : $_ENV["DB_NAME"],
-                self::isLocal() ? $_ENV["DB_LOCAL_PORT"] : $_ENV["DB_PORT"]
+                $_ENV["DB_SERVER_NAME"],
+                $_ENV["DB_USERNAME"],
+                $_ENV["DB_PASSWORD"],
+                $_ENV["DB_NAME"],
+                $_ENV["DB_PORT"]
             );
         }
         catch(\Exception $err) {
