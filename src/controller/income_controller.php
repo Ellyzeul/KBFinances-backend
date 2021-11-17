@@ -24,4 +24,11 @@ class IncomeController
 
         View::render($response);
     }
+
+    public static function read()
+    {
+        $response = Income::read();
+
+        View::render($response);
+    }
 }

@@ -26,4 +26,11 @@ class ExpenseController
 
         View::render($response);
     }
+
+    public static function read()
+    {
+        $response = Expense::read();
+
+        View::render($response);
+    }
 }

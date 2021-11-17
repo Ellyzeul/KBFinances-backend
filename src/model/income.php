@@ -49,4 +49,28 @@ class Income
             "message" => "Income created"
         ];
     }
+
+    public static function read()
+    {
+        $selectQuery =
+           "SELECT
+                descricao AS description,
+                valor AS value,
+                data_lancamento AS entry_date,
+                (SELECT categoria FROM CategoriaDeReceitas WHERE id = Receitas.categoria) AS category,
+                data_recebimento AS receipt_date
+            FROM Receitas
+            INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id";
+        
+        $db = Database::getDB();
+
+        $result = $db->query($selectQuery);
+        $response = [];
+
+        while(($row = $result->fetch_assoc()) != null) {
+            array_push($response, $row);
+        }
+
+        return $response;
+    }
 }

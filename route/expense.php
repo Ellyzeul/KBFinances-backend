@@ -3,6 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 
 use \KBFinances\Controllers\ExpenseController;
+use KBFinances\Models\Expense;
 
 require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."vendor".DIRECTORY_SEPARATOR."autoload.php";
 $_SESSION["dot_env_path"] = __DIR__.DIRECTORY_SEPARATOR."..";
@@ -20,4 +21,7 @@ if($_GET["operation"] == "c") {
         $request["payment_date"],
         $request["due_date"]
     );
+}
+if($_GET["operation"] == "r") {
+    ExpenseController::read();
 }

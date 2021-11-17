@@ -52,4 +52,29 @@ class Expense
             "message" => "Expense created"
         ];
     }
+
+    public static function read()
+    {
+        $selectQuery =
+           "SELECT
+                descricao AS description,
+                valor AS value,
+                data_lancamento AS entry_date,
+                (SELECT categoria FROM CategoriaDeDespesas WHERE id = Despesas.categoria) AS category,
+                data_pagamento AS payment_date,
+                data_vencimento AS due_date
+            FROM Despesas
+            INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id";
+        
+        $db = Database::getDB();
+
+        $result = $db->query($selectQuery);
+        $response = [];
+
+        while(($row = $result->fetch_assoc()) != null) {
+            array_push($response, $row);
+        }
+
+        return $response;
+    }
 }

@@ -20,3 +20,6 @@ if($_GET["operation"] == "c") {
         $request["receipt_date"]
     );
 }
+if($_GET["operation"] == "r") {
+    IncomeController::read();
+}
