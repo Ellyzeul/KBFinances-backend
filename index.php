@@ -19,8 +19,10 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
         <li>Login - POST - <code>/route/login.php</code></li>
         <li>Criar despesa - POST - <code>/route/expense.php?operation=c</code></li>
         <li>Ler despesas - GET - <code>/route/expense.php?operation=r</code></li>
+        <li>Atualizar despesa - POST - <code>/route/expense.php?operation=u</code></li>
         <li>Criar receita - POST - <code>/route/income.php?operation=c</code></li>
         <li>Ler receitas - GET - <code>/route/income.php?operation=r</code></li>
+        <li>Atualizar receita - POST - <code>/route/income.php?operation=u</code></li>
     </ul>
 </body>
 </html>
