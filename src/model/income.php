@@ -57,7 +57,7 @@ class Income
                 descricao AS description,
                 valor AS value,
                 data_lancamento AS entry_date,
-                (SELECT categoria FROM CategoriaDeReceitas WHERE id = Receitas.categoria) AS category,
+                categoria AS category,
                 data_recebimento AS receipt_date
             FROM Receitas
             INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id";

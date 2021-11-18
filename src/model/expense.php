@@ -60,7 +60,7 @@ class Expense
                 descricao AS description,
                 valor AS value,
                 data_lancamento AS entry_date,
-                (SELECT categoria FROM CategoriaDeDespesas WHERE id = Despesas.categoria) AS category,
+                categoria AS category,
                 data_pagamento AS payment_date,
                 data_vencimento AS due_date
             FROM Despesas
