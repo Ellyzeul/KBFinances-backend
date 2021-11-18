@@ -14,15 +14,20 @@ class IncomeController
         ?string $receipt_date
     )
     {
-        $response = Income::create(
+        $incomeResponse = Income::create(
             $description,
             $value,
             $category,
             $email,
             $receipt_date
         );
+        
+        $response = [
+            "message" => $incomeResponse["message"]
+        ];
+        $status_code = $incomeResponse["status"];
 
-        View::render($response, 200);
+        View::render($response, $status_code);
     }
 
     public static function read()
@@ -30,5 +35,29 @@ class IncomeController
         $response = Income::read();
 
         View::render($response, 200);
+    }
+
+    public static function update(
+        int $id, 
+        string $description, 
+        float $value, 
+        int $category,
+        ?string $receipt_date
+    )
+    {
+        $incomeResponse = Income::update(
+            $id,
+            $description,
+            $value,
+            $category,
+            $receipt_date
+        );
+        
+        $response = [
+            "message" => $incomeResponse["message"]
+        ];
+        $status_code = $incomeResponse["status"];
+
+        View::render($response, $status_code);
     }
 }

@@ -33,4 +33,30 @@ class ExpenseController
 
         View::render($response, 200);
     }
+
+    public static function update(
+        int $id, 
+        string $description, 
+        float $value, 
+        int $category,
+        ?string $payment_date,
+        ?string $due_date
+    )
+    {
+        $expenseResponse = Expense::update(
+            $id,
+            $description,
+            $value,
+            $category,
+            $payment_date,
+            $due_date
+        );
+        
+        $response = [
+            "message" => $expenseResponse["message"]
+        ];
+        $status_code = $expenseResponse["status"];
+
+        View::render($response, $status_code);
+    }
 }

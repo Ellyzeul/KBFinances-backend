@@ -25,3 +25,13 @@ if($_GET["operation"] == "c") {
 if($_GET["operation"] == "r") {
     ExpenseController::read();
 }
+if($_GET["operation"] == "u") {
+    ExpenseController::update(
+        $request["id"],
+        $request["description"],
+        $request["value"],
+        $request["category"],
+        $request["payment_date"],
+        $request["due_date"]
+    );
+}

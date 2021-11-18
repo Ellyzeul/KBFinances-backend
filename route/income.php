@@ -23,3 +23,12 @@ if($_GET["operation"] == "c") {
 if($_GET["operation"] == "r") {
     IncomeController::read();
 }
+if($_GET["operation"] == "u") {
+    IncomeController::update(
+        $request["id"],
+        $request["description"],
+        $request["value"],
+        $request["category"],
+        $request["receipt_date"]
+    );
+}

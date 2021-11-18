@@ -77,4 +77,45 @@ class Expense
 
         return $response;
     }
+
+    public static function update(
+        int $id, 
+        string $description, 
+        float $value, 
+        int $category,
+        ?string $payment_date,
+        ?string $due_date
+    )
+    {
+        $entryResponse = Entry::update($id, $description, $value);
+
+        if($entryResponse["code"] != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Entry"
+        ];
+
+        $updateQuery =
+           "UPDATE Despesas
+            SET
+                categoria = ?,
+                data_pagamento = ?,
+                data_vencimento = ?
+            WHERE id = ?";
+        
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($updateQuery);
+        $stmt->bind_param("issi", $category, $payment_date, $due_date, $id);
+        $stmt->execute();
+
+        if($db->errno != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Expense"
+        ];
+
+        return [
+            "status" => 200,
+            "message" => "expense updated"
+        ];
+    }
 }

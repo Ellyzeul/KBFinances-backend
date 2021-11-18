@@ -38,6 +38,26 @@ class Entry
         ];
     }
 
+    public static function update(int $id, string $description, float $value)
+    {
+        $updateQuery =
+           "UPDATE Lancamentos
+            SET
+                descricao = ?,
+                valor = ?
+            WHERE id = ?";
+        
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($updateQuery);
+        $stmt->bind_param("sdi", $description, $value, $id);
+        $stmt->execute();
+
+        if($db->errno != 0) return ["code" => 1];
+
+        return ["code" => 0];
+    }
+
     private static function insertFinanceMonth(string $entry_date, string $email)
     {
         $insertMonthQuery =

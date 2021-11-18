@@ -45,7 +45,7 @@ class Income
         ];
 
         return [
-            "status" => 200,
+            "status" => 201,
             "message" => "Income created"
         ];
     }
@@ -72,5 +72,44 @@ class Income
         }
 
         return $response;
+    }
+
+    public static function update(
+        int $id, 
+        string $description, 
+        float $value, 
+        int $category,
+        ?string $receipt_date
+    )
+    {
+        $entryResponse = Entry::update($id, $description, $value);
+
+        if($entryResponse["code"] != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Entry"
+        ];
+
+        $updateQuery =
+           "UPDATE Receitas
+            SET
+                categoria = ?,
+                data_recebimento = ?
+            WHERE id = ?";
+        
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($updateQuery);
+        $stmt->bind_param("isi", $category, $receipt_date, $id);
+        $stmt->execute();
+
+        if($db->errno != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Income"
+        ];
+
+        return [
+            "status" => 200,
+            "message" => "income updated"
+        ];
     }
 }
