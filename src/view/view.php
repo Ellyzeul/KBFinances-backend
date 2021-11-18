@@ -3,10 +3,11 @@
 
 class View
 {
-    public static function render($response)
+    public static function render(array $response, int $status_code)
     {
         $json = json_encode($response);
-        http_response_code(200);
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code($status_code);
 
         echo $json;
     }

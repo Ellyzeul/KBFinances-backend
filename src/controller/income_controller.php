@@ -22,13 +22,13 @@ class IncomeController
             $receipt_date
         );
 
-        View::render($response);
+        View::render($response, 200);
     }
 
     public static function read()
     {
         $response = Income::read();
 
-        View::render($response);
+        View::render($response, 200);
     }
 }

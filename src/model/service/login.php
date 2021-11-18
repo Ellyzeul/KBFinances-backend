@@ -35,7 +35,7 @@ class Login
 
         if(!isset($name)) return [
             "code" => 1,
-            "message" => "email not found..."
+            "message" => "Email não encontrado..."
         ];
 
         if(password_verify($pwd, $hashPwd)) return [
@@ -46,7 +46,7 @@ class Login
 
         return [
             "code" => 2,
-            "message" => "incorrect password..."
+            "message" => "Senha incorreta..."
         ];
     }
 }

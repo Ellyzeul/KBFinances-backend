@@ -24,13 +24,13 @@ class ExpenseController
             $due_date
         );
 
-        View::render($response);
+        View::render($response, 200);
     }
 
     public static function read()
     {
         $response = Expense::read();
 
-        View::render($response);
+        View::render($response, 200);
     }
 }
