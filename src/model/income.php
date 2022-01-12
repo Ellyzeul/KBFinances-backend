@@ -2,6 +2,7 @@
 
 use KBFinances\Models\Entry;
 use KBFinances\Services\Database;
+use KBFinances\Models\User;
 
 
 class Income
@@ -46,7 +47,8 @@ class Income
 
         return [
             "status" => 201,
-            "message" => "Income created"
+            "message" => "Income created",
+            "balance" => User::getBalance($email)
         ];
     }
 

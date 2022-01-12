@@ -23,4 +23,22 @@ class User
 
         return $id;
     }
+
+    public static function getBalance(string $email)
+    {
+        $selectQuery =
+           "SELECT saldo
+            FROM Usuarios
+            WHERE email = ?";
+        
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->bind_result($balance);
+        $stmt->execute();
+        $stmt->fetch();
+
+        return $balance;
+    }
 }
