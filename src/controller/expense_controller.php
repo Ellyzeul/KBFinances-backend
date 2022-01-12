@@ -39,6 +39,7 @@ class ExpenseController
         string $description, 
         float $value, 
         int $category,
+        string $email,
         ?string $payment_date,
         ?string $due_date
     )
@@ -48,12 +49,14 @@ class ExpenseController
             $description,
             $value,
             $category,
+            $email,
             $payment_date,
             $due_date
         );
         
         $response = [
-            "message" => $expenseResponse["message"]
+            "message" => $expenseResponse["message"],
+            "balance" => (isset($expenseResponse["balance"]) ? $expenseResponse["balance"] : null)
         ];
         $status_code = $expenseResponse["status"];
 

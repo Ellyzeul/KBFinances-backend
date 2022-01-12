@@ -31,6 +31,7 @@ if($_GET["operation"] == "u") {
         $request["description"],
         $request["value"],
         $request["category"],
+        $request["email"],
         $request["payment_date"],
         $request["due_date"]
     );

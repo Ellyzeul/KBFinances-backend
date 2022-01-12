@@ -87,6 +87,7 @@ class Expense
         string $description, 
         float $value, 
         int $category,
+        string $email,
         ?string $payment_date,
         ?string $due_date
     )
@@ -119,7 +120,8 @@ class Expense
 
         return [
             "status" => 200,
-            "message" => "expense updated"
+            "message" => "expense updated",
+            "balance" => User::getBalance($email)
         ];
     }
 
