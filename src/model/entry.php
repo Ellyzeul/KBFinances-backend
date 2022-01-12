@@ -58,6 +58,21 @@ class Entry
         return ["code" => 0];
     }
 
+    public static function delete(int $id)
+    {
+        $deleteQuery = "DELETE FROM Lancamentos WHERE id = ?";
+
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($deleteQuery);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        if($db->errno != 0) return ["code" => 1];
+
+        return ["code" => 0];
+    }
+
     private static function insertFinanceMonth(string $entry_date, string $email)
     {
         $insertMonthQuery =

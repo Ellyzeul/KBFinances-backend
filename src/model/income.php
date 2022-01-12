@@ -56,6 +56,7 @@ class Income
     {
         $selectQuery =
            "SELECT
+                Receitas.id AS id,
                 descricao AS description,
                 valor AS value,
                 data_lancamento AS entry_date,
@@ -111,7 +112,37 @@ class Income
 
         return [
             "status" => 200,
-            "message" => "income updated"
+            "message" => "income updated",
+            "balance" => User::getBalance($email)
+        ];
+    }
+
+    public static function delete(int $id)
+    {
+        $deleteQuery = "DELETE FROM Receitas WHERE id = ?";
+
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($deleteQuery);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        if($db->errno != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Income"
+        ];
+
+        $entryResponse = Entry::delete($id);
+
+        if($entryResponse["code"] != 0) return [
+            "status" => 500,
+            "message" => "some error happened on Entry"
+        ];
+
+        return [
+            "status" => 200,
+            "message" => "income deleted",
+            "balance" => User::getBalance($email)
         ];
     }
 }

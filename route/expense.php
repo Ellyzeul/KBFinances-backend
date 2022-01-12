@@ -35,3 +35,8 @@ if($_GET["operation"] == "u") {
         $request["due_date"]
     );
 }
+if($_GET["operation"] == "d") {
+    ExpenseController::delete(
+        $request["id"]
+    );
+}

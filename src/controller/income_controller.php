@@ -60,4 +60,16 @@ class IncomeController
 
         View::render($response, $status_code);
     }
+
+    public static function delete(int $id)
+    {
+        $incomeResponse = Income::delete($id);
+        
+        $response = [
+            "message" => $incomeResponse["message"]
+        ];
+        $status_code = $incomeResponse["status"];
+
+        View::render($response, $status_code);
+    }
 }

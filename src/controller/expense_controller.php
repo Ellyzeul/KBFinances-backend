@@ -59,4 +59,16 @@ class ExpenseController
 
         View::render($response, $status_code);
     }
+
+    public static function delete(int $id)
+    {
+        $expenseResponse = Expense::delete($id);
+        
+        $response = [
+            "message" => $expenseResponse["message"]
+        ];
+        $status_code = $expenseResponse["status"];
+
+        View::render($response, $status_code);
+    }
 }

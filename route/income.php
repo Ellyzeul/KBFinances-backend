@@ -32,3 +32,8 @@ if($_GET["operation"] == "u") {
         $request["receipt_date"]
     );
 }
+if($_GET["operation"] == "d") {
+    IncomeController::delete(
+        $request["id"]
+    );
+}
