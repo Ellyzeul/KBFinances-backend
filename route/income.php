@@ -37,3 +37,8 @@ if($_GET["operation"] == "d") {
         $request["id"]
     );
 }
+if($_GET["operation"] == "f") {
+    IncomeController::fetchSingle(
+        $request["id"]
+    );
+}

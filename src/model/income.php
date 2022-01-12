@@ -145,4 +145,34 @@ class Income
             "balance" => User::getBalance($email)
         ];
     }
+
+    public static function fetchSingle(int $id)
+    {
+        $selectQuery =
+           "SELECT
+            Receitas.id AS id,
+            descricao AS description,
+            valor AS value,
+            data_lancamento AS entry_date,
+            categoria AS category,
+            data_recebimento AS receipt_date
+        FROM Receitas
+        INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id AND
+            Receitas.id = ?";
+        
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $response = [];
+
+        while(($row = $result->fetch_assoc()) != null) {
+            array_push($response, $row);
+        }
+
+        return $response;
+    }
 }

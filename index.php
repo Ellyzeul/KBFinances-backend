@@ -35,6 +35,8 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
         <li>Ler - GET - <code>/route/income.php?operation=r</code></li>
         <li>Atualizar - POST - <code>/route/income.php?operation=u</code></li>
         <li>Deletar - POST - <code>/route/income.php?operation=d</code></li>
+        <br>
+        <li>Ler receita única - POST - <code>/route/income.php?operation=f</code></li>
     </ul>
 </body>
 </html>
