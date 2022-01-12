@@ -40,3 +40,8 @@ if($_GET["operation"] == "d") {
         $request["id"]
     );
 }
+if($_GET["operation"] == "f") {
+    ExpenseController::fetchSingle(
+        $request["id"]
+    );
+}

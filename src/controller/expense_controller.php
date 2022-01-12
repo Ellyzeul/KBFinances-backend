@@ -71,4 +71,11 @@ class ExpenseController
 
         View::render($response, $status_code);
     }
+
+    public static function fetchSingle(int $id)
+    {
+        $response = Expense::fetchSingle($id);
+
+        View::render($response, 200);
+    }
 }
