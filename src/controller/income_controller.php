@@ -42,6 +42,8 @@ class IncomeController
         string $description, 
         float $value, 
         int $category,
+        string $email,
+        ?string $entry_date,
         ?string $receipt_date
     )
     {
@@ -50,11 +52,14 @@ class IncomeController
             $description,
             $value,
             $category,
+            $email,
+            $entry_date,
             $receipt_date
         );
         
         $response = [
-            "message" => $incomeResponse["message"]
+            "message" => $incomeResponse["message"],
+            "balance" => (isset($incomeResponse["balance"]) ? $incomeResponse["balance"] : null)
         ];
         $status_code = $incomeResponse["status"];
 

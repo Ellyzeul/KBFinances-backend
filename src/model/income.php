@@ -83,6 +83,8 @@ class Income
         string $description, 
         float $value, 
         int $category,
+        string $email,
+        ?string $entry_date,
         ?string $receipt_date
     )
     {

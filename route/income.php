@@ -29,6 +29,8 @@ if($_GET["operation"] == "u") {
         $request["description"],
         $request["value"],
         $request["category"],
+        $request["email"],
+        $request["entry_date"],
         $request["receipt_date"]
     );
 }
