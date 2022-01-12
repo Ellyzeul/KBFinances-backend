@@ -51,6 +51,7 @@ class Expense
         return [
             "status" => 201,
             "message" => "Expense created",
+            "id" => $entryResponse["entry_id"],
             "balance" => User::getBalance($email)
         ];
     }
