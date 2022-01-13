@@ -146,8 +146,7 @@ class Income
 
         return [
             "status" => 200,
-            "message" => "income deleted",
-            "balance" => User::getBalance($email)
+            "message" => "income deleted"
         ];
     }
 

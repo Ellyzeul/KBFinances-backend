@@ -151,8 +151,7 @@ class Expense
 
         return [
             "status" => 200,
-            "message" => "expense deleted",
-            "balance" => User::getBalance($email)
+            "message" => "expense deleted"
         ];
     }
 
