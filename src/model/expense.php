@@ -76,6 +76,8 @@ class Expense
         $response = [];
 
         while(($row = $result->fetch_assoc()) != null) {
+            $row["id"] = intval($row["id"]);
+            $row["value"] = floatval($row["value"]);
             array_push($response, $row);
         }
 

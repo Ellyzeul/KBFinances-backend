@@ -39,6 +39,6 @@ class User
         $stmt->execute();
         $stmt->fetch();
 
-        return $balance;
+        return floatval($balance);
     }
 }
