@@ -41,7 +41,7 @@ class Login
         if(password_verify($pwd, $hashPwd)) return [
             "code" => 0,
             "name" => $name,
-            "balance" => $balance
+            "balance" => floatval($balance)
         ];
 
         return [
