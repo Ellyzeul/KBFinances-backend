@@ -78,9 +78,9 @@ class IncomeController
         View::render($response, $status_code);
     }
 
-    public static function fetchSingle(int $id)
+    public static function fetchSingle(string $email, int $id)
     {
-        $response = Income::fetchSingle($id);
+        $response = Income::fetchSingle($email, $id);
 
         View::render($response, 200);
     }

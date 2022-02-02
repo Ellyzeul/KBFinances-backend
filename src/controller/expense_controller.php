@@ -75,9 +75,9 @@ class ExpenseController
         View::render($response, $status_code);
     }
 
-    public static function fetchSingle(int $id)
+    public static function fetchSingle(string $email, int $id)
     {
-        $response = Expense::fetchSingle($id);
+        $response = Expense::fetchSingle($email, $id);
 
         View::render($response, 200);
     }

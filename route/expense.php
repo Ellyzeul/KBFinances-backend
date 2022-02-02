@@ -49,6 +49,7 @@ if($_GET["operation"] == "d") {
 }
 if($_GET["operation"] == "f") {
     ExpenseController::fetchSingle(
+        $request["email"],
         $request["id"]
     );
     return;

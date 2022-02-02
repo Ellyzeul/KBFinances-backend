@@ -43,6 +43,7 @@ if($_GET["operation"] == "d") {
 }
 if($_GET["operation"] == "f") {
     IncomeController::fetchSingle(
+        $request["email"],
         $request["id"]
     );
 }

@@ -162,7 +162,7 @@ class Expense
         ];
     }
 
-    public static function fetchSingle(int $id)
+    public static function fetchSingle(string $email, int $id)
     {
         $selectQuery =
            "SELECT
@@ -174,13 +174,16 @@ class Expense
                 data_pagamento AS payment_date,
                 data_vencimento AS due_date
             FROM Despesas
-            INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id AND
-                Despesas.id = ?";
+             INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id
+             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
+             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
+             AND Usuarios.email = ?
+             AND Despesas.id = ?";
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($selectQuery);
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("si", $email, $id);
         $stmt->execute();
 
         $result = $stmt->get_result();

@@ -157,24 +157,27 @@ class Income
         ];
     }
 
-    public static function fetchSingle(int $id)
+    public static function fetchSingle(string $email, int $id)
     {
         $selectQuery =
            "SELECT
-            Receitas.id AS id,
-            descricao AS description,
-            valor AS value,
-            data_lancamento AS entry_date,
-            categoria AS category,
-            data_recebimento AS receipt_date
-        FROM Receitas
-        INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id AND
-            Receitas.id = ?";
+                Receitas.id AS id,
+                descricao AS description,
+                valor AS value,
+                data_lancamento AS entry_date,
+                categoria AS category,
+                data_recebimento AS receipt_date
+            FROM Receitas
+             INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id
+             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
+             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
+             AND Usuarios.email = ?
+             AND Receitas.id = ?";
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($selectQuery);
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("si", $email, $id);
         $stmt->execute();
 
         $result = $stmt->get_result();
