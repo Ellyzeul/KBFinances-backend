@@ -11,6 +11,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/index.css">
     <title>KBFinancesAPI</title>
 </head>
 <body>
@@ -22,22 +23,168 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
     </ul>
     <p>Despesas</p>
     <ul>
-        <li>Criar - POST - <code>/route/expense.php?operation=c</code></li>
-        <li>Ler - GET - <code>/route/expense.php?operation=r</code></li>
-        <li>Atualizar - POST - <code>/route/expense.php?operation=u</code></li>
-        <li>Deletar - POST - <code>/route/expense.php?operation=d</code></li>
+        <li class="collapsible">Criar - POST - <code>/route/expense.php?operation=c</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para criar uma despesa</p>
+            <code>
+                <pre>
+                    {
+                        "description": "Show",
+                        "value": 50,
+                        "category": 1,
+                        "email": "gabriel@email.com",
+                        "payment_date": "2022-02-23",
+                        "due_date": "2022-02-18"
+                    }
+                </pre>
+            </code>
+        </div>
+
+        <li class="collapsible">Ler - POST - <code>/route/expense.php?operation=r</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para ler todas as despesas de um usuário</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com"
+                    }
+                </pre>
+            </code>
+        </div>
+        
+        <li class="collapsible">Atualizar - POST - <code>/route/expense.php?operation=u</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para atualizar uma despesa</p>
+            <code>
+                <pre>
+                    {
+                        "id": 4,
+                        "description": "iFood",
+                        "value": 32.9,
+                        "category": 3,
+                        "email":"gabriel@email.com",
+                        "payment_date": "2021-11-14",
+                        "due_date":null
+                    }
+                </pre>
+            </code>
+        </div>
+        
+        <li class="collapsible">Deletar - POST - <code>/route/expense.php?operation=d</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para deletar uma despesa</p>
+            <code>
+                <pre>
+                    {
+                        "id": 4
+                    }
+                </pre>
+            </code>
+        </div>
+        
         <br>
-        <li>Ler despesa única - POST - <code>/route/expense.php?operation=f</code></li>
-        <li>Ler valores das despesas por categoria - POST - <code>/route/expense.php?operation=pc</code></li>
+        <li class="collapsible">Ler despesa única - POST - <code>/route/expense.php?operation=f</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para ler uma única despesa de um usuário</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com"
+                        "id": 4
+                    }
+                </pre>
+            </code>
+        </div>
+        
+        <li class="collapsible">Ler valores das despesas por categoria - POST - <code>/route/expense.php?operation=pc</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para ler os valores das despesas por categoria</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com"
+                    }
+                </pre>
+            </code>
+        </div>
+        
     </ul>
     <p>Receitas</p>
     <ul>
-        <li>Criar - POST - <code>/route/income.php?operation=c</code></li>
-        <li>Ler - GET - <code>/route/income.php?operation=r</code></li>
-        <li>Atualizar - POST - <code>/route/income.php?operation=u</code></li>
-        <li>Deletar - POST - <code>/route/income.php?operation=d</code></li>
+        <li class="collapsible">Criar - POST - <code>/route/income.php?operation=c</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para criar uma receita</p>
+            <code>
+                <pre>
+                    {
+                        "category": 0,
+                        "description": "Salario",
+                        "email": "gabriel@email.com",
+                        "receipt_date": "2022-01-12",
+                        "value": 2000
+                    }
+                </pre>
+            </code>
+        </div>
+        
+        <li class="collapsible">Ler - POST - <code>/route/income.php?operation=r</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para todas as receitas de um usuário</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com"
+                    }
+                </pre>
+            </code>
+        </div>
+        
+        <li class="collapsible">Atualizar - POST - <code>/route/income.php?operation=u</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para atualizar uma receita</p>
+            <code>
+                <pre>
+                    {
+                        "id": 8,
+                        "description":"Bolsa de valores",
+                        "category": 2,
+                        "email": "gabriel@email.com",
+                        "entry_date": "2021-11-17",
+                        "receipt_date": "2021-11-30",
+                        "value": 300.00
+                    }
+                </pre>
+            </code>
+        </div>
+        
+        <li class="collapsible">Deletar - POST - <code>/route/income.php?operation=d</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para deletar uma receita</p>
+            <code>
+                <pre>
+                    {
+                        "id": 8
+                    }
+                </pre>
+            </code>
+        </div>
+        
         <br>
-        <li>Ler receita única - POST - <code>/route/income.php?operation=f</code></li>
+        <li class="collapsible">Ler receita única - POST - <code>/route/income.php?operation=f</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para ler uma única receita de um usuário</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com",
+                        "id": 28
+                    }
+                </pre>
+            </code>
+        </div>
+        
     </ul>
+
+    <script src="/ui/collapsible.js"></script>
 </body>
 </html>
