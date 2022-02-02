@@ -28,6 +28,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
         <li>Deletar - POST - <code>/route/expense.php?operation=d</code></li>
         <br>
         <li>Ler despesa única - POST - <code>/route/expense.php?operation=f</code></li>
+        <li>Ler valores das despesas por categoria - POST - <code>/route/expense.php?operation=pc</code></li>
     </ul>
     <p>Receitas</p>
     <ul>
