@@ -81,4 +81,11 @@ class ExpenseController
 
         View::render($response, 200);
     }
+
+    public static function getGroupByCategory(string $email)
+    {
+        $response = Expense::getGroupByCategory($email);
+
+        View::render($response, 200);
+    }
 }

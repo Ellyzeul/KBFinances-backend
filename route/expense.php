@@ -21,9 +21,11 @@ if($_GET["operation"] == "c") {
         $request["payment_date"],
         $request["due_date"]
     );
+    return;
 }
 if($_GET["operation"] == "r") {
     ExpenseController::read();
+    return;
 }
 if($_GET["operation"] == "u") {
     ExpenseController::update(
@@ -35,14 +37,23 @@ if($_GET["operation"] == "u") {
         $request["payment_date"],
         $request["due_date"]
     );
+    return;
 }
 if($_GET["operation"] == "d") {
     ExpenseController::delete(
         $request["id"]
     );
+    return;
 }
 if($_GET["operation"] == "f") {
     ExpenseController::fetchSingle(
         $request["id"]
     );
+    return;
+}
+if($_GET["operation"] == "pc") {
+    ExpenseController::getGroupByCategory(
+        $request["email"]
+    );
+    return;
 }

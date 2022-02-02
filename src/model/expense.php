@@ -185,4 +185,36 @@ class Expense
 
         return $response;
     }
+
+    public static function getGroupByCategory(string $email)
+    {
+        $selectQuery =
+           "SELECT
+                sum(valor) AS value,
+                (SELECT CategoriaDeDespesas.categoria 
+                 FROM CategoriaDeDespesas 
+                 WHERE id = Despesas.categoria
+                ) AS category
+            FROM Despesas
+             INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id
+             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
+             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
+             AND Usuarios.email = ?
+            GROUP BY category";
+            
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $response = [];
+
+        while(($row = $result->fetch_assoc()) != null) {
+            array_push($response, $row);
+        }
+
+        return $response;
+    }
 }
