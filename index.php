@@ -19,7 +19,18 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
     <hr>
     <p>Serviço de autenticação</p>
     <ul>
-        <li>Login - POST - <code>/route/login.php</code></li>
+        <li class="collapsible">Login - POST - <code>/route/login.php</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para realizar login</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com",
+                        "password": "12345678"
+                    }
+                </pre>
+            </code>
+        </div>
     </ul>
     <p>Despesas</p>
     <ul>
