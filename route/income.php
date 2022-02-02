@@ -21,7 +21,9 @@ if($_GET["operation"] == "c") {
     );
 }
 if($_GET["operation"] == "r") {
-    IncomeController::read();
+    IncomeController::read(
+        $request["email"]
+    );
 }
 if($_GET["operation"] == "u") {
     IncomeController::update(

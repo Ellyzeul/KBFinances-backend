@@ -56,7 +56,7 @@ class Expense
         ];
     }
 
-    public static function read()
+    public static function read(string $email)
     {
         $selectQuery =
            "SELECT
@@ -68,11 +68,18 @@ class Expense
                 data_pagamento AS payment_date,
                 data_vencimento AS due_date
             FROM Despesas
-            INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id";
+             INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id
+             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
+             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
+             AND Usuarios.email = ?";
         
         $db = Database::getDB();
 
-        $result = $db->query($selectQuery);
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
         $response = [];
 
         while(($row = $result->fetch_assoc()) != null) {

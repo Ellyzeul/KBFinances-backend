@@ -24,7 +24,9 @@ if($_GET["operation"] == "c") {
     return;
 }
 if($_GET["operation"] == "r") {
-    ExpenseController::read();
+    ExpenseController::read(
+        $request["email"]
+    );
     return;
 }
 if($_GET["operation"] == "u") {

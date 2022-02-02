@@ -27,9 +27,9 @@ class ExpenseController
         View::render($response, 200);
     }
 
-    public static function read()
+    public static function read(string $email)
     {
-        $response = Expense::read();
+        $response = Expense::read($email);
 
         View::render($response, 200);
     }
