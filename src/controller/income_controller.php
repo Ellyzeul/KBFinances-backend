@@ -21,7 +21,7 @@ class IncomeController
             $email,
             $receipt_date
         );
-        $status_code = $incomeResponse["status"];
+        $status_code = $response["status"];
 
         View::render($response, $status_code);
     }
