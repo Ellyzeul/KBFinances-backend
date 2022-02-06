@@ -14,17 +14,13 @@ class IncomeController
         ?string $receipt_date
     )
     {
-        $incomeResponse = Income::create(
+        $response = Income::create(
             $description,
             $value,
             $category,
             $email,
             $receipt_date
         );
-        
-        $response = [
-            "message" => $incomeResponse["message"]
-        ];
         $status_code = $incomeResponse["status"];
 
         View::render($response, $status_code);
