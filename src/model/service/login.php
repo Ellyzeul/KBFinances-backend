@@ -16,32 +16,26 @@ class Login
     public static function auth(string $email, string $pwd)
     {
         $selectQuery =
-           "SELECT
-                nome,
-                senha,
-                saldo
-            FROM
-                Usuarios
-            WHERE
-                email = ?";
+           "CALL select_login(?)";
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($selectQuery);
         $stmt->bind_param("s", $email);
-        $stmt->bind_result($name, $hashPwd, $balance);
         $stmt->execute();
-        $stmt->fetch();
+        $result = $stmt->get_result()->fetch_assoc();
 
-        if(!isset($name)) return [
+        if(!isset($result["name"])) return [
             "code" => 1,
             "message" => "Email não encontrado..."
         ];
 
-        if(password_verify($pwd, $hashPwd)) return [
-            "code" => 0,
-            "name" => $name,
-            "balance" => floatval($balance)
+        if(password_verify($pwd, $result["password"])) return [
+            "name" => $result["name"],
+            "balance" => $result["balance"],
+            "economy" => $result["economy"] ? $result["economy"]*100 : 0,
+            "annotation" => $result["annotation"] ? $result["annotation"] : "",
+            "code" => 0
         ];
 
         return [

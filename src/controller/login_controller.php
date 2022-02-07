@@ -25,11 +25,9 @@ class LoginController
         }
 
         else {
-            $response = [
-                "message" => "Login concluído",
-                "name" => $loginResponse["name"],
-                "balance" => $loginResponse["balance"]
-            ];
+            $response = $loginResponse;
+            unset($response["code"]);
+            $response["message"] = "Login concluído";
             $status_code = 200;
         }
 

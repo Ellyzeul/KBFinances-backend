@@ -32,8 +32,38 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
             </code>
         </div>
     </ul>
+    <p>Serviços Kakeibo</p>
+    <ul>
+        <li class="collapsible">Atualizar economia prevista - POST - <code>/route/kakeibo.php?operation=set_economy</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para realizar login</p>
+            <code>
+                <pre>
+                    {
+                        "economy": 20,
+                        "month"?: 2,
+                        "year"?: 2022,
+                    }
+                </pre>
+            </code>
+        </div>
+        <li class="collapsible">Atualizar anotação mensal - POST - <code>/route/kakeibo.php?operation=set_annotation</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para realizar login</p>
+            <code>
+                <pre>
+                    {
+                        "annotation": "Tenho que economizar...",
+                        "month"?: 2,
+                        "year"?: 2022,
+                    }
+                </pre>
+            </code>
+        </div>
+    </ul>
     <p>Despesas</p>
     <ul>
+        <p>Operações CRUD</p>
         <li class="collapsible">Criar - POST - <code>/route/expense.php?operation=c</code></li>
         <div class="content">
             <p>Exemplo de requisição para criar uma despesa</p>
@@ -122,6 +152,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
     </ul>
     <p>Receitas</p>
     <ul>
+        <p>Operações CRUD</p>
         <li class="collapsible">Criar - POST - <code>/route/income.php?operation=c</code></li>
         <div class="content">
             <p>Exemplo de requisição para criar uma receita</p>
