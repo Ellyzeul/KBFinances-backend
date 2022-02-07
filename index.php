@@ -40,6 +40,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
             <code>
                 <pre>
                     {
+                        "email": "gabriel@email.com",
                         "economy": 20,
                         "month"?: 2,
                         "year"?: 2022,
@@ -53,6 +54,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
             <code>
                 <pre>
                     {
+                        "email": "gabriel@email.com",
                         "annotation": "Tenho que economizar...",
                         "month"?: 2,
                         "year"?: 2022,

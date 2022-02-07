@@ -24,6 +24,7 @@ else {
 
 if($_GET["operation"] == "set_economy") {
     KakeiboController::setMonthEconomy(
+        $request["email"],
         $request["economy"],
         $month,
         $year
@@ -31,6 +32,7 @@ if($_GET["operation"] == "set_economy") {
 }
 if($_GET["operation"] == "set_annotation") {
     KakeiboController::setAnnotation(
+        $request["email"],
         $request["annotation"],
         $month,
         $year

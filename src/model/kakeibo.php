@@ -5,19 +5,20 @@ use KBFinances\Services\Database;
 
 class Kakeibo
 {
-    public static function setMonthEconomy(int $economy, int $month, int $year)
+    public static function setMonthEconomy(string $email, int $economy, int $month, int $year)
     {
         $updateQuery = 
            "UPDATE MesDeFinancas
                 SET economia_prevista = ?
             WHERE
                 mes = ? AND
-                ano = ?";
+                ano = ? AND
+                id_usuario = (SELECT id FROM Usuarios WHERE email = ?)";
             
             $db = Database::getDB();
 
             $stmt = $db->prepare($updateQuery);
-            $stmt->bind_param("dii", floatval($economy/100), $month, $year);
+            $stmt->bind_param("diis", floatval($economy/100), $month, $year, $email);
             $stmt->execute();
 
             if($db->errno != 0) return [
@@ -31,19 +32,20 @@ class Kakeibo
             ];
     }
 
-    public static function setAnnotation(string $annotation, int $month, int $year)
+    public static function setAnnotation(string $email, string $annotation, int $month, int $year)
     {
         $updateQuery = 
            "UPDATE MesDeFinancas
                 SET anotacao = ?
             WHERE
                 mes = ? AND
-                ano = ?";
+                ano = ? AND
+                id_usuario = (SELECT id FROM Usuarios WHERE email = ?)";
             
             $db = Database::getDB();
 
             $stmt = $db->prepare($updateQuery);
-            $stmt->bind_param("sii", $annotation, $month, $year);
+            $stmt->bind_param("siis", $annotation, $month, $year, $email);
             $stmt->execute();
 
             if($db->errno != 0) return [
