@@ -227,6 +227,6 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
         
     </ul>
 
-    <script src="/ui/collapsible.js"></script>
+    <script src="/static/collapsible.js"></script>
 </body>
 </html>
