@@ -58,20 +58,7 @@ class Expense
 
     public static function read(string $email)
     {
-        $selectQuery =
-           "SELECT
-                Despesas.id AS id,
-                descricao AS description,
-                valor AS value,
-                data_lancamento AS entry_date,
-                categoria AS category,
-                data_pagamento AS payment_date,
-                data_vencimento AS due_date
-            FROM Despesas
-             INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id
-             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
-             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
-             AND Usuarios.email = ?";
+        $selectQuery = "CALL read_expenses(?)";
         
         $db = Database::getDB();
 
@@ -164,21 +151,7 @@ class Expense
 
     public static function fetchSingle(string $email, int $id)
     {
-        $selectQuery =
-           "SELECT
-                Despesas.id AS id,
-                descricao AS description,
-                valor AS value,
-                data_lancamento AS entry_date,
-                categoria AS category,
-                data_pagamento AS payment_date,
-                data_vencimento AS due_date
-            FROM Despesas
-             INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id
-             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
-             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
-             AND Usuarios.email = ?
-             AND Despesas.id = ?";
+        $selectQuery = "CALL fetch_expense(?,?)";
         
         $db = Database::getDB();
 
@@ -198,19 +171,7 @@ class Expense
 
     public static function getGroupByCategory(string $email)
     {
-        $selectQuery =
-           "SELECT
-                sum(valor) AS value,
-                (SELECT CategoriaDeDespesas.categoria 
-                 FROM CategoriaDeDespesas 
-                 WHERE id = Despesas.categoria
-                ) AS category
-            FROM Despesas
-             INNER JOIN Lancamentos ON Despesas.id = Lancamentos.id
-             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
-             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
-             AND Usuarios.email = ?
-            GROUP BY category";
+        $selectQuery = "CALL get_expenses_by_category(?)";
             
         $db = Database::getDB();
 

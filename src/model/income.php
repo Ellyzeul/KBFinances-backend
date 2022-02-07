@@ -55,19 +55,7 @@ class Income
 
     public static function read(string $email)
     {
-        $selectQuery =
-           "SELECT
-                Receitas.id AS id,
-                descricao AS description,
-                valor AS value,
-                data_lancamento AS entry_date,
-                categoria AS category,
-                data_recebimento AS receipt_date
-            FROM Receitas
-             INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id
-             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
-             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
-             AND Usuarios.email = ?";
+        $selectQuery = "CALL read_incomes(?)";
         
         $db = Database::getDB();
 
@@ -159,20 +147,7 @@ class Income
 
     public static function fetchSingle(string $email, int $id)
     {
-        $selectQuery =
-           "SELECT
-                Receitas.id AS id,
-                descricao AS description,
-                valor AS value,
-                data_lancamento AS entry_date,
-                categoria AS category,
-                data_recebimento AS receipt_date
-            FROM Receitas
-             INNER JOIN Lancamentos ON Receitas.id = Lancamentos.id
-             INNER JOIN MesDeFinancas ON Lancamentos.id_mes_de_financa = MesDeFinancas.id
-             INNER JOIN Usuarios ON MesDeFinancas.id_usuario = Usuarios.id
-             AND Usuarios.email = ?
-             AND Receitas.id = ?";
+        $selectQuery = "CALL fetch_income(?,?)";
         
         $db = Database::getDB();
 
