@@ -38,3 +38,17 @@ if($_GET["operation"] == "set_annotation") {
         $year
     );
 }
+if($_GET["operation"] == "get_economy") {
+    KakeiboController::getMonthEconomy(
+        $request["email"],
+        $month,
+        $year
+    );
+}
+if($_GET["operation"] == "get_annotation") {
+    KakeiboController::getAnnotation(
+        $request["email"],
+        $month,
+        $year
+    );
+}

@@ -5,6 +5,50 @@ use KBFinances\Services\Database;
 
 class Kakeibo
 {
+    public static function getMonthEconomy(string $email, int $month, int $year)
+    {
+        $selectQuery =
+           "SELECT economia_prevista
+            FROM MesDeFinancas
+            WHERE
+                mes = ? AND
+                ano = ? AND
+                id_usuario = (SELECT id FROM Usuarios WHERE email = ?)";
+
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($updateQuery);
+        $stmt->bind_param("s", $month, $year, $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $response = $result->fetch_assoc();
+
+        return $response;
+    }
+
+    public static function getAnnotation(string $email, int $month, int $year)
+    {
+        $selectQuery =
+           "SELECT anotacao
+            FROM MesDeFinancas
+            WHERE
+                mes = ? AND
+                ano = ? AND
+                id_usuario = (SELECT id FROM Usuarios WHERE email = ?)";
+
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($updateQuery);
+        $stmt->bind_param("s", $month, $year, $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $response = $result->fetch_assoc();
+
+        return $response;
+    }
+
     public static function setMonthEconomy(string $email, int $economy, int $month, int $year)
     {
         $updateQuery = 

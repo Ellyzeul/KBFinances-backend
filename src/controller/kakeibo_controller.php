@@ -6,6 +6,28 @@ use KBFinances\Views\View;
 
 class KakeiboController
 {
+    public static function getMonthEconomy(string $email, int $month, int $year)
+    {
+        $response = Kakeibo::getMonthEconomy(
+            $email,
+            $month,
+            $year
+        );
+
+        View::render($response, 200);
+    }
+    
+    public static function getAnnotation(string $email, int $month, int $year)
+    {
+        $response = Kakeibo::getAnnotation(
+            $email,
+            $month,
+            $year
+        );
+
+        View::render($response, 200);
+    }
+
     public static function setMonthEconomy(string $email, int $economy, int $month, int $year)
     {
         $response = Kakeibo::setMonthEconomy(

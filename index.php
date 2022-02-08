@@ -34,9 +34,22 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
     </ul>
     <p>Serviços Kakeibo</p>
     <ul>
+        <li class="collapsible">Ler economia prevista - POST - <code>/route/kakeibo.php?operation=get_economy</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para ler a economia prevista</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com",
+                        "month"?: 2,
+                        "year"?: 2022,
+                    }
+                </pre>
+            </code>
+        </div>
         <li class="collapsible">Atualizar economia prevista - POST - <code>/route/kakeibo.php?operation=set_economy</code></li>
         <div class="content">
-            <p>Exemplo de requisição para realizar login</p>
+            <p>Exemplo de requisição para atualizar a economia prevista</p>
             <code>
                 <pre>
                     {
@@ -48,9 +61,23 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
                 </pre>
             </code>
         </div>
+        <br>
+        <li class="collapsible">Ler anotação mensal - POST - <code>/route/kakeibo.php?operation=get_annotation</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para ler a anotação mensal</p>
+            <code>
+                <pre>
+                    {
+                        "email": "gabriel@email.com",
+                        "month"?: 2,
+                        "year"?: 2022,
+                    }
+                </pre>
+            </code>
+        </div>
         <li class="collapsible">Atualizar anotação mensal - POST - <code>/route/kakeibo.php?operation=set_annotation</code></li>
         <div class="content">
-            <p>Exemplo de requisição para realizar login</p>
+            <p>Exemplo de requisição para atualizar a anotação mensal</p>
             <code>
                 <pre>
                     {
