@@ -13,13 +13,13 @@ $request = json_decode(file_get_contents('php://input'), true);
 
 if(!isset($request["month"])) {
     $date = explode("-", date("m-Y"));
-    $month = $date[0];
-    $year = $date[1];
+    $month = intval($date[0]);
+    $year = intval($date[1]);
     unset($date);
 }
 else {
-    $month = $request["month"];
-    $year = $request["year"];
+    $month = intval($request["month"]);
+    $year = intval($request["year"]);
 }
 
 if($_GET["operation"] == "set_economy") {

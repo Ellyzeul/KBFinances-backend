@@ -8,7 +8,7 @@ class Kakeibo
     public static function getMonthEconomy(string $email, int $month, int $year)
     {
         $selectQuery =
-           "SELECT economia_prevista
+           "SELECT economia_prevista AS economy
             FROM MesDeFinancas
             WHERE
                 mes = ? AND
@@ -17,8 +17,8 @@ class Kakeibo
 
         $db = Database::getDB();
 
-        $stmt = $db->prepare($updateQuery);
-        $stmt->bind_param("s", $month, $year, $email);
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("iis", $month, $year, $email);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -39,8 +39,8 @@ class Kakeibo
 
         $db = Database::getDB();
 
-        $stmt = $db->prepare($updateQuery);
-        $stmt->bind_param("s", $month, $year, $email);
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("iis", $month, $year, $email);
         $stmt->execute();
 
         $result = $stmt->get_result();
