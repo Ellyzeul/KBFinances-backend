@@ -1,4 +1,4 @@
-.collapsible {
+.collapsible, .not_collapsible {
     background-color: #eee;
     color: #444;
     cursor: pointer;
@@ -10,7 +10,7 @@
     font-size: 15px;
 }
 
-.active, .collapsible:hover {
+.active, .collapsible:hover, .not_collapsible:hover {
     background-color: #ccc;
     cursor:pointer;
 }
