@@ -47,3 +47,11 @@ if($_GET["operation"] == "f") {
         $request["id"]
     );
 }
+if($_GET["operation"] == "create_category") {
+    IncomeController::setCategory(
+        $request["category"]
+    );
+}
+if($_GET["operation"] == "get_categories") {
+    IncomeController::getCategories();
+}

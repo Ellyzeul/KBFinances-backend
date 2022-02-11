@@ -164,4 +164,39 @@ class Income
 
         return $response;
     }
+
+    public static function setCategory(string $category)
+    {
+        $insertQuery =
+           "INSERT INTO CategoriaDeReceitas (
+               categoria
+            ) VALUES (?)";
+        
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($insertQuery);
+        $stmt->bind_param("s", $category);
+        $stmt->execute();
+
+        return [
+            "message" => "Categoria inserida com sucesso!"
+        ];
+    }
+
+    public static function getCategories() {
+        $selectQuery =
+           "SELECT
+                id,
+                categoria AS category
+            FROM CategoriaDeReceitas";
+        
+        $db = Database::getDB();
+
+        $result = $db->query($selectQuery);
+        $response = [];
+
+        while(($row = $result->fetch_assoc()) != null) array_push($response, $row);
+
+        return $response;
+    }
 }

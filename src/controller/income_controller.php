@@ -80,4 +80,18 @@ class IncomeController
 
         View::render($response, 200);
     }
+    
+    public static function setCategory(string $category)
+    {
+        $response = Income::setCategory($category);
+
+        View::render($response, 201);
+    }
+
+    public static function getCategories()
+    {
+        $response = Income::getCategories();
+
+        View::render($response, 200);
+    }
 }

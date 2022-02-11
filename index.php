@@ -253,6 +253,18 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
                 </pre>
             </code>
         </div>
+        <li>Ler categorias de receita - GET - <code>/route/income.php?operation=get_categories</code></li>
+        <li class="collapsible">Inserir categoria de receita - POST - <code>/route/income.php?operation=set_caegory</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para categoria de receita</p>
+            <code>
+                <pre>
+                    {
+                        "category": "Empreendimentos"
+                    }
+                </pre>
+            </code>
+        </div>
         
     </ul>
 
