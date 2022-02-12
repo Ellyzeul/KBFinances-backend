@@ -81,16 +81,16 @@ class IncomeController
         View::render($response, 200);
     }
     
-    public static function setCategory(string $category)
+    public static function setCategory(string $category, string $email)
     {
-        $response = Income::setCategory($category);
+        $response = Income::setCategory($category, $email);
 
         View::render($response, 201);
     }
 
-    public static function getCategories()
+    public static function getCategories(string $email)
     {
-        $response = Income::getCategories();
+        $response = Income::getCategories($email);
 
         View::render($response, 200);
     }

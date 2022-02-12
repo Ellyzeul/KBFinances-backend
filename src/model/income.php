@@ -22,27 +22,38 @@ class Income
             "message" => "some error happened on Entry"
         ];
 
+        $selectUserIdQuery = "SELECT get_user_id(?)";
+
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($selectUserIdQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->bind_result($userId);
+        $stmt->execute();
+        $stmt->fetch();
+        unset($stmt);
+
         $insertQuery =
            "INSERT INTO Receitas (
                 id,
                 categoria,
-                data_recebimento
-            ) VALUES (?,?,?)";
-        
-        $db = Database::getDB();
+                data_recebimento,
+                id_usuario
+            ) VALUES (?,?,?,?)";
 
         $stmt = $db->prepare($insertQuery);
         $stmt->bind_param(
-            "iis",
+            "iisi",
             $entryResponse["entry_id"],
             $category,
-            $receipt_date
+            $receipt_date,
+            $userId
         );
         $stmt->execute();
 
         if($db->errno != 0) return [
             "status" => 500,
-            "message" => "some error happened on Income"
+            "message" => "$db->errno: $db->error"
         ];
 
         return [
@@ -165,17 +176,18 @@ class Income
         return $response;
     }
 
-    public static function setCategory(string $category)
+    public static function setCategory(string $category, string $email)
     {
         $insertQuery =
            "INSERT INTO CategoriaDeReceitas (
-               categoria
-            ) VALUES (?)";
+               categoria,
+               id_usuario
+            ) VALUES (?,get_user_id(?))";
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($insertQuery);
-        $stmt->bind_param("s", $category);
+        $stmt->bind_param("ss", $category, $email);
         $stmt->execute();
 
         return [
@@ -183,16 +195,20 @@ class Income
         ];
     }
 
-    public static function getCategories() {
+    public static function getCategories(string $email) {
         $selectQuery =
            "SELECT
-                id,
+                code,
                 categoria AS category
-            FROM CategoriaDeReceitas";
+            FROM CategoriaDeReceitas
+            WHERE id_usuario = get_user_id(?)";
         
         $db = Database::getDB();
 
-        $result = $db->query($selectQuery);
+        $stmt = $db->prepare($selectQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $response = [];
 
         while(($row = $result->fetch_assoc()) != null) array_push($response, $row);
