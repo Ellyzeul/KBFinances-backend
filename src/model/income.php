@@ -58,7 +58,7 @@ class Income
 
         return [
             "status" => 201,
-            "message" => "Income created",
+            "message" => "Receita inserida com sucesso",
             "id" => $entryResponse["entry_id"],
             "balance" => User::getBalance($email)
         ];
