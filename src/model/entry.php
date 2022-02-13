@@ -12,17 +12,33 @@ class Entry
            "INSERT INTO Lancamentos (
                 descricao,
                 valor,
-                data_lancamento
-            ) VALUES (?,?,?)";
+                data_lancamento,
+                id_mes_de_financa
+            ) VALUES (
+                ?,
+                ?,
+                ?,
+                (SELECT id
+                FROM MesDeFinancas
+                WHERE
+                    id_usuario = get_user_id(?) AND
+                    mes = ? AND
+                    ano = ?)
+            )";
+
+        $date = explode("-", date("m-Y"));
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($insertQuery);
         $stmt->bind_param(
-            "sds",
+            "sdssii",
             $description,
             $value,
-            $entry_date
+            $entry_date,
+            $email,
+            $date[0],
+            $date[1]
         );
         $stmt->execute();
 
@@ -30,7 +46,10 @@ class Entry
             self::insertFinanceMonth($entry_date, $email);
             Entry::create($description, $value, $entry_date, $email);
         }
-        if($db->errno != 0) return ["code" => 1];
+        if($db->errno != 0) return [
+            "code" => 1,
+            "message" => "$db->errno: $db->error"
+        ];
 
         return [
             "code" => 0,

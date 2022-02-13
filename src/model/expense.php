@@ -20,7 +20,7 @@ class Expense
 
         if($entryResponse["code"] != 0) return [
             "status" => 500,
-            "message" => "some error happened on Entry"
+            "message" => $entryResponse["message"]
         ];
 
         $insertQuery =
