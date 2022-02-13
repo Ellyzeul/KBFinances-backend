@@ -90,6 +90,22 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
             </code>
         </div>
     </ul>
+    <p>Usuário</p>
+    <ul>
+        <li class="collapsible">Criar - POST - <code>/route/user.php?operation=c</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para criação de usuário</p>
+            <code>
+                <pre>
+                    {
+                        "name": "Fulano",
+                        "email": "fulano@email.com",
+                        "password": "senha_não_criptografada (criptografia feita no lado servidor)"
+                    }
+                </pre>
+            </code>
+        </div>
+    </ul>
     <p>Despesas</p>
     <ul>
         <p>Operações CRUD</p>
