@@ -198,7 +198,7 @@ class Income
     public static function getCategories(string $email) {
         $selectQuery =
            "SELECT
-                code,
+                codigo AS code,
                 categoria AS category
             FROM CategoriaDeReceitas
             WHERE id_usuario = get_user_id(?)";
