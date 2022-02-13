@@ -60,3 +60,7 @@ if($_GET["operation"] == "pc") {
     );
     return;
 }
+if($_GET["operation"] == "get_categories") {
+    ExpenseController::getCategories();
+    return;
+}

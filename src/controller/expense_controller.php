@@ -88,4 +88,11 @@ class ExpenseController
 
         View::render($response, 200);
     }
+
+    public static function getCategories()
+    {
+        $response = Expense::getCategories();
+
+        View::render($response, 200);
+    }
 }

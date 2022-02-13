@@ -188,4 +188,22 @@ class Expense
 
         return $response;
     }
+
+    public static function getCategories()
+    {
+        $selectQuery =
+           "SELECT
+                id,
+                categoria
+            FROM CategoriaDeDespesas";
+        
+        $db = Database::getDB();
+
+        $result = $db->query($selectQuery);
+        $response = [];
+
+        while(($row = $result->fetch_assoc())) array_push($response, $row);
+
+        return $response;
+    }
 }
