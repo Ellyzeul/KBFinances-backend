@@ -94,4 +94,13 @@ class IncomeController
 
         View::render($response, 200);
     }
+
+    public static function deleteCategory(int $code, string $email)
+    {
+        $response = Income::deleteCategory($code, $email);
+        $status_code = $response["status"];
+        unset($response["status"]);
+
+        View::render($response, $status_code);
+    }
 }

@@ -294,6 +294,18 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
                 </pre>
             </code>
         </div>
+        <li class="collapsible">Deletar categoria de receita - POST - <code>/route/income.php?operation=delete_caegory</code></li>
+        <div class="content">
+            <p>Exemplo de requisição para deletar uma categoria de receita de um usuário</p>
+            <code>
+                <pre>
+                    {
+                        "code": 0,
+                        "email": "gabriel@email.com"
+                    }
+                </pre>
+            </code>
+        </div>
         
     </ul>
 

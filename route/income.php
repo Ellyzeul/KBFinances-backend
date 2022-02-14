@@ -58,3 +58,9 @@ if($_GET["operation"] == "get_categories") {
         $request["email"]
     );
 }
+if($_GET["operation"] == "delete_category") {
+    IncomeController::deleteCategory(
+        $request["code"],
+        $request["email"]
+    );
+}

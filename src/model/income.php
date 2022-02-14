@@ -215,4 +215,34 @@ class Income
 
         return $response;
     }
+
+    public static function deleteCategory(int $code, string $email)
+    {
+        $deleteQuery =
+           "DELETE FROM CategoriaDeReceitas
+            WHERE
+                codigo = ? AND
+                id_usuario = get_user_id(?)";
+            
+        $db = Database::getDB();
+
+        $stmt = $db->prepare($deleteQuery);
+        $stmt->bind_param("is", $code, $email);
+        $stmt->execute();
+
+        $errno = $db->errno;
+
+        if($errno == 0) return [
+            "status" => 200,
+            "message" => "Receita excluída com sucesso"
+        ];
+        if($errno == 1451) return [
+            "status" => 403,
+            "message" => "Para excluir essa categoria, se certifique de alterar a categoria das receitas que utilizam esta categoria"
+        ];
+        if($errno != 0) return [
+            "status" => 500,
+            "message" => "Algum erro ocorreu..."
+        ];
+    }
 }
