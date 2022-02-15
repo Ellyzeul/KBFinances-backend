@@ -10,16 +10,12 @@ $allowedOrigins = [
 var_dump($_SERVER);
 if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     $origin = $_SERVER['HTTP_ORIGIN'];
-    $protocol = $_SERVER['HTTP_PROTOCOL'];
 
     if($origin == 'localhost') {
-        $port = $_SERVER['SERVER_PORT'];
-        header("Access-Control-Allow-Origin: http://localhost:$port");
+        header("Access-Control-Allow-Origin: http://localhost:3000");
     }
-    foreach($allowedOrigins as $allowed) {
-        if($origin == $allowed) {
-            header("Access-Control-Allow-Origin: $protocol://$origin");
-        }
+    else {
+        header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
     }
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
     header("Access-Control-Allow-Headers: Content-type");
