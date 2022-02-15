@@ -56,14 +56,14 @@ class Expense
         ];
     }
 
-    public static function read(string $email)
+    public static function read(string $email, int $month, int $year)
     {
-        $selectQuery = "CALL read_expenses(?)";
+        $selectQuery = "CALL read_expenses(?,?,?)";
         
         $db = Database::getDB();
 
         $stmt = $db->prepare($selectQuery);
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("sii", $email, $month, $year);
         $stmt->execute();
 
         $result = $stmt->get_result();

@@ -128,11 +128,13 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
 
         <li class="collapsible">Ler - POST - <code>/route/expense.php?operation=r</code></li>
         <div class="content">
-            <p>Exemplo de requisição para ler todas as despesas de um usuário</p>
+            <p>Exemplo de requisição para ler as despesas de um usuário em um mês especificado</p>
             <code>
                 <pre>
                     {
-                        "email": "gabriel@email.com"
+                        "email": "gabriel@email.com",
+                        "month": 2,
+                        "year": 2022
                     }
                 </pre>
             </code>

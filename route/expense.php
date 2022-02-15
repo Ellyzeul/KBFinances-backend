@@ -25,7 +25,9 @@ if($_GET["operation"] == "c") {
 }
 if($_GET["operation"] == "r") {
     ExpenseController::read(
-        $request["email"]
+        $request["email"],
+        $request["month"],
+        $request["year"]
     );
     return;
 }
