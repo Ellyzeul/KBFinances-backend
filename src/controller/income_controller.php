@@ -26,9 +26,9 @@ class IncomeController
         View::render($response, $status_code);
     }
 
-    public static function read(string $email)
+    public static function read(string $email, int $month, int $year)
     {
-        $response = Income::read($email);
+        $response = Income::read($email, $month, $year);
 
         View::render($response, 200);
     }

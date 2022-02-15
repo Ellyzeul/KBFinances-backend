@@ -22,7 +22,9 @@ if($_GET["operation"] == "c") {
 }
 if($_GET["operation"] == "r") {
     IncomeController::read(
-        $request["email"]
+        $request["email"],
+        $request["month"],
+        $request["year"]
     );
 }
 if($_GET["operation"] == "u") {
