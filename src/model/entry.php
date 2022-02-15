@@ -6,7 +6,7 @@ use KBFinances\Models\User;
 
 class Entry
 {
-    public static function create(string $description, float $value, string $entry_date, string $email)
+    public static function create(string $description, float $value, string $entry_date, string $confirmation_date, string $email)
     {
         $insertQuery =
            "INSERT INTO Lancamentos (
@@ -26,7 +26,7 @@ class Entry
                     ano = ?)
             )";
 
-        $date = explode("-", date("m-Y"));
+        $date = explode("-", $confirmation_date);
         
         $db = Database::getDB();
 
@@ -37,8 +37,8 @@ class Entry
             $value,
             $entry_date,
             $email,
-            $date[0],
-            $date[1]
+            $date[1],
+            $date[0]
         );
         $stmt->execute();
 

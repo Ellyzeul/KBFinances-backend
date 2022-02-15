@@ -15,7 +15,7 @@ class Income
         ?string $receipt_date
     )
     {
-        $entryResponse = Entry::create($description, $value, date("Y-m-d"), $email);
+        $entryResponse = Entry::create($description, $value, date("Y-m-d"), $receipt_date, $email);
 
         if($entryResponse["code"] != 0) return [
             "status" => 500,

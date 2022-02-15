@@ -16,7 +16,7 @@ class Expense
         ?string $due_date
     )
     {
-        $entryResponse = Entry::create($description, $value, date("Y-m-d"), $email);
+        $entryResponse = Entry::create($description, $value, date("Y-m-d"), $payment_date, $email);
 
         if($entryResponse["code"] != 0) return [
             "status" => 500,
