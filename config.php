@@ -7,7 +7,6 @@ if(!isset($_ENV["DB_NAME"])) {
 
 $allowed = ["http://localhost:3000", "https://kbfinances.netlify.app"];
 $origin = $_SERVER["HTTP_REFERER"];
-var_dump($origin);
 
 if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
