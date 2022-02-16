@@ -1,6 +1,6 @@
 <?php 
 
-header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
+header("Access-Control-Allow-Origin: https://kbfinances.netlify.app/");
 
 use \KBFinances\Controllers\LoginController;
 
