@@ -169,14 +169,14 @@ class Expense
         return $response;
     }
 
-    public static function getGroupByCategory(string $email)
+    public static function getGroupByCategory(string $email, int $month, int $year)
     {
-        $selectQuery = "CALL get_expenses_by_category(?)";
+        $selectQuery = "CALL get_expenses_by_category(?,?,?)";
             
         $db = Database::getDB();
 
         $stmt = $db->prepare($selectQuery);
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("sii", $email, $month, $year);
         $stmt->execute();
 
         $result = $stmt->get_result();

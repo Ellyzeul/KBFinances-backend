@@ -82,9 +82,9 @@ class ExpenseController
         View::render($response, 200);
     }
 
-    public static function getGroupByCategory(string $email)
+    public static function getGroupByCategory(string $email, int $month, int $year)
     {
-        $response = Expense::getGroupByCategory($email);
+        $response = Expense::getGroupByCategory($email, $month, $year);
 
         View::render($response, 200);
     }

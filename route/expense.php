@@ -58,7 +58,9 @@ if($_GET["operation"] == "f") {
 }
 if($_GET["operation"] == "pc") {
     ExpenseController::getGroupByCategory(
-        $request["email"]
+        $request["email"],
+        $request["month"],
+        $request["year"]
     );
     return;
 }

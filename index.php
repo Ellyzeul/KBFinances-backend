@@ -190,7 +190,9 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
             <code>
                 <pre>
                     {
-                        "email": "gabriel@email.com"
+                        "email": "gabriel@email.com",
+                        "month": 2,
+                        "year": 2022
                     }
                 </pre>
             </code>
