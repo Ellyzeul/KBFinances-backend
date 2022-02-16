@@ -8,7 +8,7 @@ class View
         $json = json_encode($response);
         header('Content-Type: application/json; charset=utf-8');
         
-        $allowed = ["http:/localhost:3000", "https://kbfinances.netlify.app"];
+        $allowed = ["http:/localhost:3000/", "https://kbfinances.netlify.app/"];
         $origin = $_SERVER['HTTP_REFERER'];
 
         if(in_array($origin, $allowed)) header("Access-Control-Allow-Origin: $origin");
