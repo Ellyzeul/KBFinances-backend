@@ -5,7 +5,7 @@ if(!isset($_ENV["DB_NAME"])) {
     $dotenv->load();
 }
 
-$allowed = ["http:/localhost:3000//", "https://kbfinances.netlify.app/"];
+$allowed = ["http://localhost:3000/", "https://kbfinances.netlify.app/"];
 $origin = $_SERVER['HTTP_REFERER'];
 
 if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
