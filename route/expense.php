@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
 
 use \KBFinances\Controllers\ExpenseController;
 use KBFinances\Models\Expense;
