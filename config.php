@@ -10,7 +10,7 @@ $origin = $_SERVER["HTTP_REFERER"];
 var_dump($origin);
 
 if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    if(in_array($origin, $allowed)) header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
     header("Access-Control-Allow-Headers: Content-type");
     http_response_code(204);
