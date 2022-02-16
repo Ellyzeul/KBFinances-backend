@@ -1,7 +1,5 @@
 <?php
 
-header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
-
 use \KBFinances\Controllers\IncomeController;
 
 require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."vendor".DIRECTORY_SEPARATOR."autoload.php";
