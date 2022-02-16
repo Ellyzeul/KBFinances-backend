@@ -44,7 +44,7 @@ class Entry
 
         if($db->errno == 1644) {
             self::insertFinanceMonth($entry_date, $email);
-            Entry::create($description, $value, $entry_date, $email);
+            Entry::create($description, $value, $entry_date, $confirmation_date, $email);
         }
         if($db->errno != 0) return [
             "code" => 1,
