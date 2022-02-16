@@ -11,7 +11,7 @@ class View
         $allowed = ["http:/localhost:3000/", "https://kbfinances.netlify.app/"];
         $origin = $_SERVER['HTTP_REFERER'];
 
-        if(in_array($origin, $allowed)) header("Access-Control-Allow-Origin: $origin");
+        if(in_array($origin, $allowed)) header("Access-Control-Allow-Origin: " . substr($origin, 0, -1));
         header("Access-Control-Allow-Origin: https://kbfinances.netlify.app");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
         header("Access-Control-Allow-Headers: Content-type");
