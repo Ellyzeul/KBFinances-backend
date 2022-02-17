@@ -12,7 +12,7 @@ class CORS
     {
         $origin = $_SERVER['HTTP_REFERER'];
 
-        if(in_array($origin, $allowed)) {
+        if(in_array($origin, CORS::$allowed)) {
             $origin = substr($origin, 0, -1);
             header("Access-Control-Allow-Origin: $origin");
         }
